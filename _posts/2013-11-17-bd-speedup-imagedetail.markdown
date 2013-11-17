@@ -19,5 +19,7 @@ categories: baidu-image javascript
 
 好久没找到这种兴奋了，找到一个点，然后和同事一起，挖掘出更多的思路，这种感觉确实不错。
 
+                                             -------时2013年11月17日18:28竣工于帝都昌平霍营龙跃苑
 
-[detail-demo]: http://image.baidu.com/i?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=qq&step_word=&ie=utf-8&in=24780&cl=2&lm=-1&st=-1&pn=5&rn=1&di=263334214500&ln=1996&fr=&&fmq=1384683133332_R&ic=0&s=&se=&sme=0&tab=&width=&height=&face=&is=&istype=2&ist=&jit=&objurl=http%3A%2F%2Fwww.01hn.com%2Fpic.asp%3Furl%3Dhttp%3A%2F%2Fwww.2008r.cn%2FUploadFiles%2F2012102214328304.jpg
+
+[detail-demo]: http://image.baidu.com/i?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=qq&step_word=&ie=utf-8&in=24780&cl=2&lm=-1&st=-1&pn=5&rn=1&di=263334214500&ln=1996&fr=&&fmq=1384683133332_R&ic=0&s=&se=&sme=0&tab=&width=&height=&face=&is=&istype=2&ist=&jit=&objurl=http%3A%2F%2Fwww.01hn.com%2Fpic.asp%3Furl%3Dhttp%3A%2F%2Fwww.2008r.cn%2FUploadFiles%2F2012102214328304.jpg  "中间页链接示例"
