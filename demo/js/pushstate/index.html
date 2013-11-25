@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test history.pushState</title>
+		
+	</head>
+	<body>
+		<nav id="nav">
+			<a href="./1.txt">1.txt</a>
+			<a href="./2.txt">2.txt</a>
+			<a href="./3.txt">3.txt</a>
+			<a href="./4.txt">4.txt</a>
+		</nav>
+		<div>
+			<pre id="output"></pre>
+		</div>
+		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script>
+			$( function(){
+				var $nav = $('#nav');	
+				var $output = $('#output');
+				$nav.on('click', 'a', navChange);
+				function navChange(e){
+					if(history.pushState){
+						e.preventDefault();
+						var $el = $(e.target);
+						var url = $el.attr('href');
+						history.pushState( { href : url }, $el.text(), url );
+						$.get( url ).done(function(str, status, xhr ){
+						    $output.html(str);
+						});
+					}
+				}
+				window.addEventListener( 'popstate', function( e ){
+				    console.log( history.length, e );
+				    if(history.state) {
+					$.get( location.href ).done(function(str, status, xhr ){
+                                             $output.html(str);
+                                        });
+				    }
+				} );
+			} );
+		</script>
+	</body>
+</html>
