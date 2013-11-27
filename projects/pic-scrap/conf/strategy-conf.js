@@ -16,12 +16,12 @@ var config = [
 ];
 
 var out = {
-    getStrategy : function( url ){
-	var strategyName = '';
+    getStrategyClass : function( url ){
+	var strategyClass = '';
 	for( var i = 0, len = config.length, temp; i < len; i++ ){
 	    temp = config[i];
 	    if( temp && temp.reg.test(url) ){
-		strategyName = temp.strategyClass;
+		strategyClass = temp.strategyClass;
 	    }
 	}
 	return strategyClass;

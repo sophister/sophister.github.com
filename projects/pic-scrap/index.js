@@ -4,8 +4,8 @@
  */
 
 var fs = require('fs');
-var strategyConf = require('./conf/strategy-conf');
-
+var strategyControl = require('./strategyControl');
+var StrategyClass = require( './interface/StrategyClass' );
 
 var uriListFile = './uri.txt';
 fs.readFile( uriListFile,  { encoding : 'utf8'}, function( err, data ){
@@ -17,8 +17,8 @@ fs.readFile( uriListFile,  { encoding : 'utf8'}, function( err, data ){
     for( var i = 0, len = listArray.length; i < len; i++ ){
 	var url = ( listArray[i] || '' ).trim();
 	if( url ){
-	    var strategyName = strategyConf.getStrategy(url);
-	    console.log(strategyName);
+	    var strategy = strategyControl.getStrategy(url);
+	    (strategy instanceof StrategyClass) && ( strategy.run() );
 	}
     }
 } );

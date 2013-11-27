@@ -3,4 +3,11 @@
  *
  */
 
+function StrategyClass(){}
 
+StrategyClass.prototype = {
+    constructor : StrategyClass, 
+    run : function(){}
+};
+
+module.exports = StrategyClass;

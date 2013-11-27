@@ -3,13 +3,16 @@
  *
  */
 
-var strategyConf = require('strategy-conf');
+var strategyConf = require('./conf/strategy-conf');
 
 var singleton = {
     getStrategy : function( url ){
-	var strategy;
-	
-	return strategy;
+	var strategyClass = strategyConf.getStrategyClass( url );
+	var strategyInstance;
+	if( strategyClass ){
+	    strategyInstance = new strategyClass( url );
+	}
+	return strategyInstance;
     }
 };
 
