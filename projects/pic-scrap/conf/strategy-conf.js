@@ -5,13 +5,21 @@
  */
 
 var PCOnlineDetail1 = require('../strategy/PCOnlineDetail1');
-
-
+var LoveBizhiDetail1 = require('../strategy/LoveBizhiDetail1');
+var HiapkDetail1 = require('../strategy/HiapkDetail1');;
 
 var config = [
     {
 	strategyClass : PCOnlineDetail1, 
-	reg : /http\:\/\/wallpaper\.pconline\.com\.cn\/pic\/\d+\.html/
+	reg : /(http\:\/\/)?wallpaper\.pconline\.com\.cn\/pic\/\d+\.html/
+    }, 
+    {
+	strategyClass : LoveBizhiDetail1, 
+	reg : /(http\:\/\/)?m\.lovebizhi\.com\/share\/\d+/
+    }, 
+    {
+	strategyClass : HiapkDetail1, 
+	reg : /wp\.hiapk\.com\/Pic\/\d+\.html/
     }
 ];
 
