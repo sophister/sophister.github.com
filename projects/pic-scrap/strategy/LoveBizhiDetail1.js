@@ -15,6 +15,8 @@ var dataStore = require('../dataStore');
 
 function Strategy( url ){
     this.url = url;
+    this.runTime = 0;
+    StrategyClass.apply(this, arguments);
 }
 
 util.inherits( Strategy, StrategyClass );
@@ -85,30 +87,29 @@ Strategy.prototype.run = function(){
 Strategy.prototype.run = function(){
     var dirPath = __dirname;
     var that = this;
+    this.runTime++;
 //console.log(dirPath);
-    var process = child_process.spawn( 'casperjs', [ dirPath + '/casperjs/LoveBizhiDetail1.js', this.url ] );
+
+    var process = child_process.spawn( 'phantomjs', [ dirPath + '/phantomjs/LoveBizhiDetail1.js', this.url ] );
     process.stdout.on( 'data', function(data){
-	console.log( 'in stdout: ' + data );
-	var jsonObj;
-	try{
-	    jsonObj = JSON.parse( data );
-	    dataStore.save( {
-                title : jsonObj.title, 
-                fromURL : jsonObj.fromURL, 
-                objURLArray : [ jsonObj.objURL ], 
-		width : jsonObj.width, 
-		height : jsonObj.height
-	    } );
-	}catch(e){
-	    console.log('[StrategyFail]: url(' + that.url + ') strategy(' + __filename + ') message(' + e.message + ')');
-	}
+	that.save(data);	
     });
     process.stderr.on( 'data', function(data){
 	console.error( 'in stderr: ' + data);
     });
     process.on( 'close', function(code){
 //	console.log( 'exit code: ' + code);
+	that.emit( 'end', { code : code });
     });
+
+
+//test child_process.exec
+/*
+    child_process.exec( 'casperjs ' + dirPath + '/casperjs/LoveBizhiDetail1.js ' + this.url, {maxBuffer : 20000 * 1024}, function( err, stdout, stderr){
+    console.log(stderr);
+    console.log(stdout);
+} );
+*/
 };
 
 

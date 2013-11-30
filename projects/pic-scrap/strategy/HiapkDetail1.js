@@ -6,6 +6,7 @@
 var util = require('util');
 var nodeio = require('node.io');
 var http = require('http');
+var child_process = require('child_process');
 var _ = require('underscore');
 var StrategyClass = require('../interface/StrategyClass');
 var dataStore = require('../dataStore');
@@ -13,41 +14,28 @@ var dataStore = require('../dataStore');
 
 function Strategy( url ){
     this.url = url;
+    StrategyClass.apply( this, arguments );
 }
 
 util.inherits( Strategy, StrategyClass );
 
 _.extend( Strategy.prototype, {
     run : function(){
-	console.log( 'run in ' + __filename );
+//	console.log( 'run in ' + __filename );
+	var dir = __dirname;
 	var that = this;
-	var methods = {
-	    input : false, 
-	    encoding : 'utf8', 
-	    run : function(){
-		this.getHtml( that.url, function( err, $, data ){
-		    if( err ){
-			this.exit(err);
-		    }
-		    try{
-
-			var title = ( $('.pic_detail .pic_detail_con .pic_detail_r h1').first().text );
-			var picURL = $('.bigpic #pic_detail_fbc img').attribs.src;
-			dataStore.save( {
-			    title : title, 
-			    fromURL : that.url, 
-			    objURLArray : [ picURL ]
-			} );
-		    }catch(e){
-			//TODO  error log 
-			console.log('[StrategyFail]: url(' + that.url + ') strategy(' + __filename + ') ');
-		    }
-		} );
-	    }
-	};
-	var job = new nodeio.Job( { timeout : 10 }, methods );
-	nodeio.start(job);;
-
+	var child = child_process.spawn( 'phantomjs', [ dir + '/phantomjs/HiapkDetail1.js', this.url ]);
+	child.stdout.on( 'data', function( data ){
+	    that.save(data);
+	});
+	child.stderr.on( 'data', function(){});
+	child.on( 'close', function( code ){
+	    that.emit( 'end', { code : code });
+//	    console.log('child close event triggered');
+	});
+	child.on( 'error', function( err ){
+	    console.error( '[[ERROR]]' + err );
+	});
     }
 } );
 
