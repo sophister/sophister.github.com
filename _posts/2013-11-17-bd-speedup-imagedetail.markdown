@@ -2,7 +2,8 @@
 layout: post
 title: "优化图片检索中间页"
 date: 2013-11-17 16:52:10
-categories: javascript baidu-image 
+categories: javascript 
+tags:  javascript baidu-image 
 ---
 
 去年的这个时候，还是忙的一塌糊涂，印象中搞了好几次夜里1点后打车回家。今年这个时候，却是没啥项目。自己找项目做了只有。看到我们[中间页][detail-demo]加载时间太慢，决定优化下。

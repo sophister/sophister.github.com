@@ -2,7 +2,8 @@
 layout: post
 title: "图片无限下拉不规则排布"
 date: 2013-12-08 21:27:10
-categories: javascript baidu-image 
+categories: javascript 
+tags:  javascript baidu-image 
 ---
 
 好久周末没加班了，上周末去公司加班，开发新版识图。
