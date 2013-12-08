@@ -1,6 +1,8 @@
+permalink: /blog/:year/:month/:day/:title
 name: 梦醒时分
 markdown: redcarpet
 pygments: true
 github: https://github.com/sophister
 sina_weibo: http://weibo.com/u/1743421717/home?wvr=5
 qq: 304592287
+

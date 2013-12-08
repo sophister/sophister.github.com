@@ -2,7 +2,7 @@
 layout: post
 title: "图片无限下拉不规则排布"
 date: 2013-12-08 21:27:10
-categories: baidu-image javascript
+categories: javascript baidu-image 
 ---
 
 好久周末没加班了，上周末去公司加班，开发新版识图。
@@ -15,7 +15,7 @@ categories: baidu-image javascript
 
 基本上还是分为MVC三层： 1、modal层负责向后端请求JSON数据； 2、整个页面有一个 `appControl`，中心控制器，负责处理各种用户输入，比如浏览器resize、用户筛选检索条件、用户下翻scroll等； 3、各种view组件，负责渲染一页图片的 `PageView`，负责渲染尺寸筛选栏的 `SizeFilterView` 和图片类型筛选的 `TypeFilterView` 。
 
-代码结构里，一般情况control都会和model层交互，获取数据，但是目前我的实现方案里，control和model层并不交互，在他们之间，还有一个专门负责计算每一页图片的 `PageCalculator` ，control直接调用 `PageCalculator` 实例，PageCalculator 会负责从 model 层获取数据，并且计算下一页的图片，如果一次请求的数据不够一页，会继续向 model 层请求，直到排满一页或者到达最后一个数据，这个时候， PageCalculator 会触发(trigger) page.ready 事件 ，通知 control 完成了下一页图片排布的计算。
+代码结构里，一般情况control都会和model层交互，获取数据，但是目前我的实现方案里，control和model层并不交互，在他们之间，还有一个专门负责计算每一页图片的 `PageCalculator` ，control直接调用 `PageCalculator` 实例，`PageCalculator` 会负责从 model 层获取数据，并且计算下一页的图片，如果一次请求的数据不够一页，会继续向 model 层请求，直到排满一页或者到达最后一个数据，这个时候， `PageCalculator` 会触发(`trigger`) `page.ready` 事件 ，通知 control 完成了下一页图片排布的计算。
 
 页面里还有一些 `strategy` ，这次思想我是从韩总的结果页中借鉴的。一个strategy负责处理一个类型的状态，比如 `ScrollStrategy` 负责计算当前用户的滚动位置，当然不是相对于 `document` 的，是相对于整个图片容器的滚动位置； `FilterStrategy` 负责计算当前用户的筛选条件、是否为默认筛选； `DisplayStrategy` 负责计算当前一行的基础行高，返回当前一行图片的宽度等。这些strategy都是在control中调用，为control服务的。
 
