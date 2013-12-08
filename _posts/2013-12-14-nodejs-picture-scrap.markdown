@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "nodejs定向抓取图片"
-date: 2013-11-17 16:52:10
+date: 2013-12-14 
 categories: javascript nodejs
 tags:  javascript casperjs phantomjs baidu-image 
 ---
